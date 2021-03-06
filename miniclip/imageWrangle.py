@@ -9,7 +9,7 @@ from matplotlib import cm
 def min_max_norm(array):
     lim = [array.min(), array.max()]
     array = array - lim[0] 
-    array.mul_(1 / (lim[1] - lim[0]))
+    array.mul_(1 / (1.e-10+ (lim[1] - lim[0])))
     # array = torch.clamp(array, min=0, max=1)
     return array
 
