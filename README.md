@@ -18,7 +18,15 @@ A common observationis is that using a primer like "an image of" can increase th
 #### It's fun. Try it for yourself
 Trying to uncover how visual and textual embeddings merge into one amalgation of modalities is truly fascinating. Please feel free to checkout the repo and try the demo on your GPU machine. 
 
-<img src="assets/clipper_example_coffeeMeeting.jpg" width=100% >
+
+
+#### The Hidden Room
+The room below is full of items that all can be identified by saliency maps. Even describing material  ("wood") points at the right items ("barrel").
+<img src="assets/clipper_example_room.jpg" width=100% >
+
+#### Coffee Meeting
+In the example below you can see how well saliency captures the objects of interest. Even abstract descriptions like "covid 19 protection" seem to focus on the mask of the person in front. 
+<img src="https://raw.githubusercontent.com/HendrikStrobelt/miniClip/main/assets/clipper_example_coffeeMeeting.jpg?token=AAHIFTUE7SURMW5H4VOVNOLAJTRO6" width=100% >
 
 
 ## Thanks
