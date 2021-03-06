@@ -29,6 +29,9 @@ Surprisingly, the phrase "an image of a book" does not match the image embedding
 Text on top of an image is very dominant which is also reflected in the saliency maps. In the following example, we observe a very strong focus on the word "pharao" which is completely out of the image context. Even small sub-phrases, like "ph" or "pha" already guide the saliency strictly towards the text label.
 <img src="assets/pharao.jpg" width=100% >
 
+Here is another example to see how dominant text is even in presence of visual objects of the same type in a scene image:
+<img src="assets/clipper_image_book_attack.jpg" width=100% >
+
 
 ## It's fun. Try it for yourself
 Trying to uncover how visual and textual embeddings merge into one amalgamation of modalities can be truly fascinating. Please try the demo on your GPU machine.
