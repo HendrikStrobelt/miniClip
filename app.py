@@ -4,16 +4,16 @@ from PIL import Image
 import torch
 import clip
 from torchray.attribution.grad_cam import grad_cam
-# from utils import imgviz
 from miniclip.imageWrangle import heatmap, min_max_norm, torch_to_rgba
 
 st.set_page_config(layout="wide")
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
+
 @st.cache(show_spinner=True, allow_output_mutation=True)
 def get_model():
-    model, preprocess = clip.load("RN50", device=device, jit=False)
-    return model, preprocess
+    return clip.load("RN50", device=device, jit=False)
+
 
 # OPTIONS:
 st.sidebar.header('Options')
@@ -27,10 +27,8 @@ with st.beta_expander('1. Upload Image', expanded=True):
 
 # st.write("### (2) Enter some desriptive texts.")
 with st.beta_expander('2. Write Descriptions', expanded=True):
-    textarea = st.text_area("Descriptions seperated by semicolon","a car; a dog; a cat")
+    textarea = st.text_area("Descriptions seperated by semicolon", "a car; a dog; a cat")
     prefix = st.text_input("(optional) Prefix all descriptions with: ", "an image of")
-
-
 
 if imageFile:
     st.markdown("<hr style='border:black solid;'>", unsafe_allow_html=True)
@@ -40,11 +38,11 @@ if imageFile:
     # preprocess image:
     image = preprocess(image_raw).unsqueeze(0).to(device)
 
-    #preprocess text
+    # preprocess text
     prefix = prefix.strip()
-    if len(prefix)>0:
+    if len(prefix) > 0:
         categories = [f"{prefix} {x.strip()}" for x in textarea.split(';')]
-    else:    
+    else:
         categories = [x.strip() for x in textarea.split(';')]
     text = clip.tokenize(categories).to(device)
     # st.write(text)
@@ -68,23 +66,28 @@ if imageFile:
         # mutliply the normalized text embedding with image norm to get approx image embedding
         text_prediction = (text_features_new[[i]] * image_features_norm)
         saliency = grad_cam(model.visual, image.type(model.dtype), text_prediction, saliency_layer=layer)
-        hm = heatmap(image[0], saliency[0][0,].detach().type(torch.float32).cpu(),alpha=alpha)
+        hm = heatmap(image[0], saliency[0][0,].detach().type(torch.float32).cpu(), alpha=alpha)
         collect_images.append(hm)
     logits = logits_per_image.cpu().numpy().tolist()[0]
     st.write("### Grad Cam for text embeddings")
-    st.image(collect_images, 
-            width=256,
-            caption=[f"{x} - {str(round(y,3))}/{str(round(l,2))}" for (x,y,l) in zip(categories, probs[0], logits)])
+    st.image(collect_images,
+             width=256,
+             caption=[f"{x} - {str(round(y, 3))}/{str(round(l, 2))}" for (x, y, l) in
+                      zip(categories, probs[0], logits)])
 
     st.write("### Original Image and Grad Cam for image embedding")
-    st.image([Image.fromarray((torch_to_rgba(image[0]).numpy()*255.).astype(np.uint8)),hm], caption=["original","image gradcam"]) #, caption="Grad Cam for original embedding")
-
+    st.image([Image.fromarray((torch_to_rgba(image[0]).numpy() * 255.).astype(np.uint8)), hm],
+             caption=["original", "image gradcam"])  # , caption="Grad Cam for original embedding")
 
     # st.image(imageFile)
+
 
 # @st.cache
 def get_readme():
     with open('README.md') as f:
         return "\n".join([x.strip() for x in f.readlines()])
-st.markdown("<hr style='border:black solid;'>", unsafe_allow_html=True) 
-st.markdown(get_readme(), unsafe_allow_html=True)
+
+
+with st.beta_expander('Description', expanded=True):
+    st.markdown("<hr style='border:black solid;'>", unsafe_allow_html=True)
+    st.markdown(get_readme(), unsafe_allow_html=True)
