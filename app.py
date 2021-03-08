@@ -16,12 +16,14 @@ def get_model():
 
 
 # OPTIONS:
+
 st.sidebar.header('Options')
 alpha = st.sidebar.radio("select alpha", [0.5, 0.7, 0.8], index=1)
 layer = st.sidebar.selectbox("select saliency layer", ['layer4.2.relu'], index=0)
 
 st.header("Saliency Map demo for CLIP")
-st.write("a quick demo by [Hendrik Strobelt](http://hendrik.strobelt.com) (MIT-IBM AI Lab) ")
+st.write(
+    "a quick experiment by [Hendrik Strobelt](http://hendrik.strobelt.com) ([MIT-IBM Watson AI Lab](https://mitibmwatsonailab.mit.edu/)) ")
 with st.beta_expander('1. Upload Image', expanded=True):
     imageFile = st.file_uploader("Select a file:", type=[".jpg", ".png", ".jpeg"])
 
@@ -88,6 +90,15 @@ def get_readme():
         return "\n".join([x.strip() for x in f.readlines()])
 
 
+st.markdown("<hr style='border:black solid;'>", unsafe_allow_html=True)
 with st.beta_expander('Description', expanded=True):
-    st.markdown("<hr style='border:black solid;'>", unsafe_allow_html=True)
     st.markdown(get_readme(), unsafe_allow_html=True)
+
+hide_streamlit_style = """
+<style>
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+</style>
+
+"""
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)

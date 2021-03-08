@@ -1,6 +1,7 @@
 ## MiniClip: A quick demo to explore text descriptions and saliency maps for Clip models
+GitHub: https://github.com/HendrikStrobelt/miniClip 
 
-<img src="assets/miniclip_teaser.jpg" width=100% style="max-width:600px" >
+<img src="https://raw.githubusercontent.com/HendrikStrobelt/miniClip/main/assets/miniclip_teaser.jpg?token=AAHIFTT5T6SXWBJMICS2OM3AJ44CA" width=100% style="max-width:600px" >
 
 This demo app uses the [OpenAI Clip](https://github.com/openai/CLIP) (Resnet50) model. You can upload an image and test your text descriptions to observe:
 
@@ -29,14 +30,14 @@ Another example of how well saliency maps capture the objects of interest. Even 
 
 ### Insight: A prime/prefix can influence results
 Using a prime like "an image of" can change the similarity of close descriptions and image embeddings. The phrase "a barrel and a chair" without prefix seems is slightly more similar to the image embedding. The difference for "some clothes" with and without prefix are more significant. Independent of the prefix, the saliency maps seem to point to the same objects. 
-<img src="assets/clipper_image_primes.jpg" width=100% >
+<img src="https://raw.githubusercontent.com/HendrikStrobelt/miniClip/main/assets/clipper_image_primes.jpg?token=AAHIFTXC66DMASMCUIOTADDAJ44GO" width=100% >
 
 ### Insight: Text adversaries are dominant
 It seems that text labels on top of an images are dominant over image content. In the following example, we observe a very strong focus on the word "pharao" which is completely outside of the image context. Even small sub-phrases, like "ph" or "pha" already guide the saliency strictly towards the text label.
-<img src="assets/pharao.jpg" width=100% >
+<img src="https://raw.githubusercontent.com/HendrikStrobelt/miniClip/main/assets/pharao.jpg?token=AAHIFTXPZKFQT77O2BZAPSLAJ44FC" width=100% >
 
 Here is an example to show how dominant text is - even in presence of visual objects of the same type in a scene image:
-<img src="assets/clipper_image_book_attack.jpg" width=100% >
+<img src="https://raw.githubusercontent.com/HendrikStrobelt/miniClip/main/assets/clipper_image_book_attack.jpg?token=AAHIFTRSN2VJNLCT2Z3ALCTAJ44DU" width=100% >
 
 
 ## It's fun. Try it for yourself
@@ -61,7 +62,7 @@ $ streamlit run app.py
 
 
 ## Author, Cite, and Thanks
-Demo and text are created by [Hendrik Strobelt](http://hendrik.strobelt.com) who is the Explainability Lead at the [MIT-IBM Watson AI Lab](https://mitibmwatsonailab.mit.edu/). Thanks go to David Bau who helped through great conversations.
+Demo and text are created by [Hendrik Strobelt](http://hendrik.strobelt.com) who is the Explainability Lead at the [MIT-IBM Watson AI Lab](https://mitibmwatsonailab.mit.edu/). Thanks go to [David Bau](https://github.com/davidbau) who helped through great conversations and to the creators of streamlit and torchray for great open source software.
 
 Please cite if you used the demo to generate novel hypothesis and ideas:
 
