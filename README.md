@@ -28,9 +28,8 @@ Another example of how well saliency maps capture the objects of interest. Even 
 
 
 ### Insight: A prime/prefix can influence results
-Using a prime like "an image of" can increase the similarity of close descriptions and image embeddings and decrease similarity for descriptions that are off. See the following book example. 
+Using a prime like "an image of" can change the similarity of close descriptions and image embeddings. The phrase "a barrel and a chair" without prefix seems is slightly more similar to the image embedding. The difference for "some clothes" with and without prefix are more significant. Independent of the prefix, the saliency maps seem to point to the same objects. 
 <img src="assets/clipper_image_primes.jpg" width=100% >
-Surprisingly, the phrase "an image of a book" does not produce a significant saliency map. Does this align with our human understanding of the phrase? We would expect a more prototypical image of a book rather than a book as one item in a complex room scene. Answers are welcome :) 
 
 ### Insight: Text adversaries are dominant
 It seems that text labels on top of an images are dominant over image content. In the following example, we observe a very strong focus on the word "pharao" which is completely outside of the image context. Even small sub-phrases, like "ph" or "pha" already guide the saliency strictly towards the text label.
