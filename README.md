@@ -1,7 +1,7 @@
 ## MiniClip: A quick demo to explore text descriptions and saliency maps for Clip models
 GitHub: https://github.com/HendrikStrobelt/miniClip 
 
-<img src="https://raw.githubusercontent.com/HendrikStrobelt/miniClip/main/assets/miniclip_teaser.jpg?token=AAHIFTT5T6SXWBJMICS2OM3AJ44CA" width=100% style="max-width:600px" >
+<img src="https://raw.githubusercontent.com/HendrikStrobelt/miniClip/refs/heads/main/assets/miniclip_teaser.jpg" width=100% style="max-width:600px" >
 
 This demo app uses the [OpenAI Clip](https://github.com/openai/CLIP) (Resnet50) model. You can upload an image and test your text descriptions to observe:
 
@@ -22,22 +22,22 @@ By playing around with the demo several observations can be made that enable mor
 
 ### Insight: Descriptions are not labels
 Recently, a use case etsblished for Clip to use the model for zero-shot classification. Here we want to make the case that when you are in control of the description text it will become prevalent how close the relation to language models is. Synonyms or properties of objects have a similar response in the text embeddings which results in  similar probability to the same image embedding. The example below shows how "wood" and "barrel" seem to trigger a similar response - not only in logits/softmax but also in saliency. The room below is full of items that all can be identified by saliency maps:
-<img src="https://raw.githubusercontent.com/HendrikStrobelt/miniClip/main/assets/clipper_example_room.jpg?token=AAHIFTQ5HQLJZPD4SBSJWXLAJTSZE" width=100% >
+<img src="https://raw.githubusercontent.com/HendrikStrobelt/miniClip/refs/heads/main/assets/clipper_example_room.jpg" width=100% >
 
 Another example of how well saliency maps capture the objects of interest. Even abstract descriptions like "covid 19 protection" seem to point towards the mask of the person in front. 
-<img src="https://raw.githubusercontent.com/HendrikStrobelt/miniClip/main/assets/clipper_example_coffeeMeeting.jpg?token=AAHIFTUE7SURMW5H4VOVNOLAJTRO6" width=100% >
+<img src="https://raw.githubusercontent.com/HendrikStrobelt/miniClip/refs/heads/main/assets/clipper_example_coffeeMeeting.jpg" width=100% >
 
 
 ### Insight: A prime/prefix can influence results
 Using a prime like "an image of" can change the similarity of close descriptions and image embeddings. The phrase "a barrel and a chair" without prefix seems is slightly more similar to the image embedding. The difference for "some clothes" with and without prefix are more significant. Independent of the prefix, the saliency maps seem to point to the same objects. 
-<img src="https://raw.githubusercontent.com/HendrikStrobelt/miniClip/main/assets/clipper_image_primes.jpg?token=AAHIFTXC66DMASMCUIOTADDAJ44GO" width=100% >
+<img src="https://raw.githubusercontent.com/HendrikStrobelt/miniClip/refs/heads/main/assets/clipper_image_primes.jpg" width=100% >
 
 ### Insight: Text adversaries are dominant
 It seems that text labels on top of an images are dominant over image content. In the following example, we observe a very strong focus on the word "pharao" which is completely outside of the image context. Even small sub-phrases, like "ph" or "pha" already guide the saliency strictly towards the text label.
-<img src="https://raw.githubusercontent.com/HendrikStrobelt/miniClip/main/assets/pharao.jpg?token=AAHIFTXPZKFQT77O2BZAPSLAJ44FC" width=100% >
+<img src="https://raw.githubusercontent.com/HendrikStrobelt/miniClip/refs/heads/main/assets/pharao.jpg" width=100% >
 
 Here is an example to show how dominant text is - even in presence of visual objects of the same type in a scene image:
-<img src="https://raw.githubusercontent.com/HendrikStrobelt/miniClip/main/assets/clipper_image_book_attack.jpg?token=AAHIFTRSN2VJNLCT2Z3ALCTAJ44DU" width=100% >
+<img src="https://raw.githubusercontent.com/HendrikStrobelt/miniClip/refs/heads/main/assets/clipper_image_book_attack.jpg" width=100% >
 
 
 ## It's fun. Try it for yourself
