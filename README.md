@@ -49,8 +49,9 @@ To prepare environment and install dependencies:
 ```bash
 $ git clone https://github.com/HendrikStrobelt/miniClip.git
 $ cd miniClip
-$ conda create -n miniclip python=3.8
-$ conda activate miniclip
+$ mamba create -n miniclip python=3.12
+$ mamba activate miniclip
+>> install pytorch -- see here: https://pytorch.org/get-started/locally/>
 $ pip install -r requirements.txt
 ```
 

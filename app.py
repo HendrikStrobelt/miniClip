@@ -9,8 +9,10 @@ from miniclip.imageWrangle import heatmap, min_max_norm, torch_to_rgba
 st.set_page_config(layout="wide")
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
+print(f"Using {device} device")
 
-@st.cache(show_spinner=True, allow_output_mutation=True)
+
+@st.cache_resource(show_spinner=True)
 def get_model():
     return clip.load("RN50", device=device, jit=False)
 
@@ -19,23 +21,25 @@ def get_model():
 
 st.sidebar.header('Options')
 alpha = st.sidebar.radio("select alpha", [0.5, 0.7, 0.8], index=1)
-layer = st.sidebar.selectbox("select saliency layer", ['layer4.2.relu'], index=0)
+layer = st.sidebar.selectbox("select saliency layer", ['layer4.2.relu3', 'layer4.2.relu2', 'layer4.2.relu1'], index=0)
 
 st.header("Saliency Map demo for CLIP")
 st.write(
     "a quick experiment by [Hendrik Strobelt](http://hendrik.strobelt.com) ([MIT-IBM Watson AI Lab](https://mitibmwatsonailab.mit.edu/)) ")
-with st.beta_expander('1. Upload Image', expanded=True):
-    imageFile = st.file_uploader("Select a file:", type=[".jpg", ".png", ".jpeg"])
+with st.expander('1. Upload Image', expanded=True):
+    uploaded_image = st.file_uploader("Select a file:", type=[".jpg", ".png", ".jpeg"])
 
 # st.write("### (2) Enter some desriptive texts.")
-with st.beta_expander('2. Write Descriptions', expanded=True):
+with st.expander('2. Write Descriptions', expanded=True):
     textarea = st.text_area("Descriptions seperated by semicolon", "a car; a dog; a cat")
     prefix = st.text_input("(optional) Prefix all descriptions with: ", "an image of")
 
-if imageFile:
+if uploaded_image:
     st.markdown("<hr style='border:black solid;'>", unsafe_allow_html=True)
-    image_raw = Image.open(imageFile)
+    image_raw = Image.open(uploaded_image)
     model, preprocess = get_model()
+
+    print(model)
 
     # preprocess image:
     image = preprocess(image_raw).unsqueeze(0).to(device)
@@ -91,7 +95,7 @@ def get_readme():
 
 
 st.markdown("<hr style='border:black solid;'>", unsafe_allow_html=True)
-with st.beta_expander('Description', expanded=True):
+with st.expander('Description', expanded=True):
     st.markdown(get_readme(), unsafe_allow_html=True)
 
 hide_streamlit_style = """
