@@ -12,6 +12,7 @@ By playing around with the demo several observations can be made that enable mor
 
 ### Table of Content
 
+- [Method](#method)
 - Insights
 	- [Insight: Descriptions are not labels](#insight-descriptions-are-not-labels)
 	- [Insight: A prime/prefix can influence results](#insight-a-primeprefix-can-influence-results)
@@ -19,6 +20,13 @@ By playing around with the demo several observations can be made that enable mor
 - [Installation - Try it for yourself](#its-fun-try-it-for-yourself)
 - [Author, Cite, and Thanks](#author-cite-and-thanks)
 
+
+### Method
+We use the text embeddings as the "target" for the image embedding and apply gradcam 
+saliency on that difference between image embedding and target text embedding. 
+The result is an informative series of saliency maps 
+
+<img src="assets/miniclip_schema.png" width=600 >
 
 ### Insight: Descriptions are not labels
 Recently, a use case etsblished for Clip to use the model for zero-shot classification. Here we want to make the case that when you are in control of the description text it will become prevalent how close the relation to language models is. Synonyms or properties of objects have a similar response in the text embeddings which results in  similar probability to the same image embedding. The example below shows how "wood" and "barrel" seem to trigger a similar response - not only in logits/softmax but also in saliency. The room below is full of items that all can be identified by saliency maps:
